@@ -11,7 +11,7 @@ int main()
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE); // glBegin只在低版本opengl中运行
 	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 	GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
@@ -41,11 +41,17 @@ int main()
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glBegin(GL_POINTS);
-		for (int i = 0; i < 10; i++) {
-			glVertex3f(i, 2 * i, 0);
-			}
+
+		glBegin(GL_POLYGON);
+			glColor3f(1.0, 0.0, 0.0);
+			glVertex3f(0.25, 0.25, 0.0);
+			glVertex3f(0.75, 0.25, 0.0);
+			glColor3f(0.0, 0.0, 1.0);
+			glVertex3f(0.75, 0.75, 0.0);
+			glVertex3f(0.25, 0.75, 0.0);
 		glEnd();
+
+
 
 		glFlush();
 		// 检查并调用事件，交换缓冲
